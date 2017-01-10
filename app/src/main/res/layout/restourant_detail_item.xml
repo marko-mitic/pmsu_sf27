@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:showIn="@layout/restourant_details_fragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="@string/call"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rest_detail_item_height"
+            android:textSize="@dimen/rest_item_text_size_large"
+            android:id="@+id/call_name"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="call"/>
+
+        <TextView
+            android:text="0622255252"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/rest_item_text_size_small"
+            android:id="@+id/call_text"
+            android:textAlignment="textEnd"
+            android:layout_weight="0.12"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="call"/>
+    </LinearLayout>
+
+    <View style="@style/Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="@string/sms"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rest_detail_item_height"
+            android:textSize="@dimen/rest_item_text_size_large"
+            android:id="@+id/sms_name"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="sms"/>
+        <TextView
+            android:text="0622255252"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/rest_item_text_size_small"
+            android:id="@+id/sms_text"
+            android:layout_weight="0.12"
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="sms"/>
+    </LinearLayout>
+    <View style="@style/Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="@string/working_time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rest_detail_item_height"
+            android:textSize="@dimen/rest_item_text_size_large"
+            android:id="@+id/worning_time_name"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:text="@string/working_time_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/rest_item_text_size_small"
+            android:id="@+id/working_time_text"
+            android:layout_weight="0.12"
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <View style="@style/Divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="@string/website"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/rest_detail_item_height"
+            android:textSize="@dimen/rest_item_text_size_large"
+            android:id="@+id/website_name"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="webpage"/>
+        <TextView
+            android:text="@string/website_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/rest_item_text_size_small"
+            android:id="@+id/website_text"
+            android:layout_weight="0.12"
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:onClick="webpage"/>
+    </LinearLayout>
+    <View style="@style/Divider"/>
+</LinearLayout>
