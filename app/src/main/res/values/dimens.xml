@@ -7,4 +7,5 @@
     <dimen name="rest_detail_item_height">42dp</dimen>
     <dimen name="rest_item_text_size_large">32sp</dimen>
     <dimen name="rest_item_text_size_small">22sp</dimen>
+    <dimen name="popup_width">150dp</dimen>
 </resources>

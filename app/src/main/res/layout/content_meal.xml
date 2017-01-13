@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    tools:context="com.example.mitke.pmsu_sf27.activities.MealActivity">
 
     <TextView
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/name_text"
         android:background="@color/background_floating_material_light"
@@ -13,13 +18,29 @@
         android:textColor="@color/black"
         android:textAlignment="center"
         android:gravity="center"
-        android:textSize="@dimen/rest_item_text_size_large"/>
+        android:textSize="@dimen/rest_item_text_size_large"
+
+        />
+
     <ImageView
+        android:id="@+id/meal_image"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="250dp"
         android:src="@mipmap/chinese_chicken"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_margin="16dp"
+        />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description_name"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="0dp"/>
+
+    <TextView
+        android:id="@+id/description_text"
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +48,17 @@
         android:textSize="@dimen/rest_item_text_size_large"
         android:background="@color/background_floating_material_light"
         android:layout_margin="16dp"
-
         />
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:fabSize="normal"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_shopping_cart_black_24dp"
+        app:layout_anchor="@id/description_text"
+        app:layout_anchorGravity="bottom|right|end"
+        android:id="@+id/order_button"
+        android:onClick="order"/>
 
 </LinearLayout>

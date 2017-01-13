@@ -3,7 +3,9 @@ package com.example.mitke.pmsu_sf27.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,4 +44,7 @@ public class TagMeal extends Model {
     }
 
 
+    public static List<TagMeal> getAll() {
+        return new Select().all().from(TagMeal.class).execute();
+    }
 }

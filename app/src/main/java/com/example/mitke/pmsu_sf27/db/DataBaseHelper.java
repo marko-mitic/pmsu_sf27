@@ -38,12 +38,12 @@ public class DataBaseHelper {
          int startHour = 10;
          int startMinute = 0;
          int endHour =  23;
-         int endMinute = 00;
+         int endMinute = 0;
          String phone  = "+381 21 6616663";
          String email = "kineski@gmail.com";
         URL site =  new URL("http://kineskirestoran88.co.rs/");
 
-        List<Meal> meals = new ArrayList<Meal>();
+        List<Meal> meals = new ArrayList<>();
         double lat =45.242144;
         double longt =19.843048;
 
@@ -69,10 +69,10 @@ public class DataBaseHelper {
         List meals1 = new ArrayList<Meal>();
 
 
-        Meal pancettaDorucak = new Meal("Pancetta dorucak", "Kulen, Prsuta, Pancetta, Jaja po zelji, Kajmak", 390.00);
-        Meal PikSaTunjevinom = new Meal("Pikantni sendvic sa tunjevinom", "Tunjevina, Kukuruz, Krastavac, Majonez, Ljuta paprika, Crveni luk", 350.00);
-        Meal teleca = new Meal("Teleca corba", "Pikantna teleca corba sa teranom", 270.00);
-        Meal govedjiT = new Meal("Govedji Capraco", "Ementaler, Gorgonzola, Grana padano, Brie, Brusnica,Med", 850.00);
+        Meal pancettaDorucak = new Meal("PANCETTA BREAKFAST", "Chorizzo, Prosciutto, Eggs, Smetana cream, served with yoghurt!", 390.00,R.mipmap.pancetta_dorucak);
+        Meal PikSaTunjevinom = new Meal("SPICY SANDWICH WITH TUNA", "Tuna, Corn, Cucumber, Mayonnaise, Chilli peppers, Red onion all inside a home made triangle buns!", 350.00,R.mipmap.sendvic_tunjevina);
+        Meal teleca = new Meal("VEAL RAGOUT SOUP", "Hot veal ragout soup, with lean ragout meat and home made noodles!", 270.00,R.mipmap.ragou_soup);
+        Meal govedjiT = new Meal("BEEF CAPRACO", "Ementaler, Gorgonzola, Grana padano, Brie, Cranberry ,Honey. An Itallan specialty that never gets old!", 850.00,R.mipmap.beef_carpaco);
 
         meals.add(pancettaDorucak);
         meals.add(PikSaTunjevinom);
@@ -109,10 +109,18 @@ public class DataBaseHelper {
                 startMinute,endHour,endMinute,phone,email,site,meals,longt,lat);
 
 
-        Meal kinPil = new Meal("Kineska piletina", "Piletina, Pirinac, Grasak, Bambus, Zacini", 550.00);
+        Meal kinPil = new Meal("CHINESE CHICKEN", "Chicken, Rice, Peas, Bamboo peaces, spices. Classical chinese meal!", 550.00,R.mipmap.chinese_chicken);
+        Meal kinMeal = new Meal("SOYA PEACES ", "Soya peaces, peanut, vegetable sauce. Perfect to suit your vegetarian needs", 550.00,R.mipmap.chinese_chicken);
+        kinMeal.save();
+        TagMeal tm4 = new TagMeal();
+        tm4.setTag(vege);
+        tm4.setMeal(kinMeal);
+        tm4.save();
+
         kinPil.save();
-        List<Meal> m  = new ArrayList<Meal>();
+        List<Meal> m  = new ArrayList<>();
         m.add(kinPil);
+        m.add(kinMeal);
         kineskiRestoran.setSiteString("http://kineskirestoran88.co.rs");
         pancettaR.setSiteString("http://www.restoranpancetta.com");
         kineskiRestoran.setImagePath(R.mipmap.chinese_restourant_small);

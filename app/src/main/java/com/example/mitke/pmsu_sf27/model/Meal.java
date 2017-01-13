@@ -1,6 +1,8 @@
 package com.example.mitke.pmsu_sf27.model;
 
 
+import android.util.Log;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -24,17 +26,28 @@ public class Meal extends Model {
     private String description;
     @Column(name = "Price", notNull=true)
     private double price;
+    @Column(name = "ImagePath")
+    private int imagePath;
+
+    public int getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(int imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public Meal() {
         super();
     }
 
 
-    public Meal(String name, String description, double price) {
+    public Meal(String name, String description, double price, int imagePath) {
         super();
         this.name = name;
         this.description = description;
         this.price = price;
+        this.imagePath = imagePath;
     }
 
 
@@ -64,28 +77,31 @@ public class Meal extends Model {
 
     public ArrayList<Tag> getTags() {
         List<TagMeal> manyToMany = getMany(TagMeal.class, "Meal");
-        ArrayList<Tag> ret = new ArrayList<Tag>();
+        ArrayList<Tag> ret = new ArrayList<>();
         for(TagMeal tm:manyToMany){
             ret.add(tm.getTag());
         }
         return ret;
     }
-    public List<Meal> getFilteredByTags(ArrayList<Tag> tags){
-        From query = new Select()
-                .from(Meal.class).as("m");
-        int i = 0;
-        for(Tag tag : tags){
-            query = query.join(TagMeal.class).as("t"+i)
-                    .on("m_id = t"+i+".meal and t+i+.rag = ?",tag.getId());
-            i++;
+    public static List<Meal> getFilteredByTags(ArrayList<Tag> tags,ArrayList<Meal> meals){
+        ArrayList<Meal> filteredList = new ArrayList<>();
+//        for(TagMeal tm: (ArrayList<TagMeal>)TagMeal.getAll()){
+//
+//        }
+
+        for(Meal m: meals){
+            if(m.getTags().containsAll(tags)){
+                filteredList.add(m);
+            }
         }
-        return query.execute();
+        return filteredList;
     }
     public static List<Meal> getAllMeals(){
         return new Select().all().from(Meal.class).execute();
     }
-    public static Meal getById(int id){
-        return new Select().from(Meal.class).where("_id = ?" ,id).executeSingle();
+    public static Meal getById(long id){
+        List<Meal> list =  new Select().from(Meal.class).as("m").where("m._id = ?" ,id).execute();
+        return list.get(0);
     }
 
 

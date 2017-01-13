@@ -6,6 +6,7 @@ import com.facebook.stetho.Stetho;
 
 /**
  * Created by mitke on 09-Jan-17.
+ * Init of stetho inspector
  */
 
 public class MyApplication extends Application {
@@ -20,6 +21,7 @@ public class MyApplication extends Application {
         initializerBuilder.enableWebKitInspector(
                 Stetho.defaultInspectorModulesProvider(this)
         );
+
 
 
 

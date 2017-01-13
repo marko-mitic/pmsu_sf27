@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -27,8 +29,10 @@ import com.example.mitke.pmsu_sf27.model.NavItem;
 import com.example.mitke.pmsu_sf27.pagers.MainPager;
 import com.example.mitke.pmsu_sf27.tools.FragmentTransition;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static com.example.mitke.pmsu_sf27.R.id.action_settings;
 import static com.example.mitke.pmsu_sf27.R.id.mainTabLayout;
 
 
@@ -66,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_more_vert_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setIcon(R.drawable.background_splash);
             actionBar.setHomeButtonEnabled(true);
         }
 
@@ -80,12 +85,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             public void onDrawerClosed(View view) {
 //                getActionBar().setTitle(mTitle);
                 getSupportActionBar().setTitle(mTitle);
+
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
 //                getActionBar().setTitle(mDrawerTitle);
-                getSupportActionBar().setTitle("iReviewer");
+                getSupportActionBar().setTitle("sf27");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -99,6 +105,17 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         MainPager mPager = new MainPager(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(mPager);
         mTabLayout.setOnTabSelectedListener(this);
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
 
 
@@ -148,9 +165,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.activity_itemdetail, menu);
-        return super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
     @Override
     public void setTitle(CharSequence title) {
@@ -178,4 +196,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case action_settings:
+                Intent sIntent = new Intent(this, SettingsActivity.class);
+                startActivity(sIntent);
+                return true;
+        }
+        return false;
+    }
 }

@@ -11,10 +11,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -27,6 +29,7 @@ import com.example.mitke.pmsu_sf27.model.Restourant;
 import com.example.mitke.pmsu_sf27.pagers.MainPager;
 import com.example.mitke.pmsu_sf27.pagers.RestourantPager;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import static com.example.mitke.pmsu_sf27.R.id.mainTabLayout;
@@ -62,8 +65,8 @@ public class RestourantActivity extends AppCompatActivity implements TabLayout.O
         final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_more_vert_black_24dp);
-
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setIcon(R.drawable.background_splash);
             actionBar.setHomeButtonEnabled(true);
         }
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -81,7 +84,7 @@ public class RestourantActivity extends AppCompatActivity implements TabLayout.O
 
             public void onDrawerOpened(View drawerView) {
 //                getActionBar().setTitle(mDrawerTitle);
-                getSupportActionBar().setTitle("iReviewer");
+                getSupportActionBar().setTitle("sf27");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -95,6 +98,17 @@ public class RestourantActivity extends AppCompatActivity implements TabLayout.O
         RestourantPager mPager = new RestourantPager(getSupportFragmentManager(), mTabLayout.getTabCount(), getPos());
         mViewPager.setAdapter(mPager);
         mTabLayout.setOnTabSelectedListener(this);
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
     }
     public int getPos(){
@@ -136,6 +150,32 @@ public class RestourantActivity extends AppCompatActivity implements TabLayout.O
         startActivity(webIntent);
     }
 
+    public void email(View view) {
+        Intent eMailIntent = new Intent();
+        eMailIntent.setAction(Intent.ACTION_SEND);
+        eMailIntent.setType("message/rfc822");
+        eMailIntent.putExtra(android.content.Intent.EXTRA_TEXT, new String[]{mRestourant.getEmail()});
+        eMailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+        eMailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "" );
+        try {
+            startActivity(Intent.createChooser(eMailIntent, getResources().getText(R.string.send_to)));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(RestourantActivity.this, "There are no email applications installed.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void share(View view) {
+        //Share text:
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out "+mRestourant.getName()+" on "+mRestourant.getSiteString());
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
+
+
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -158,8 +198,8 @@ public class RestourantActivity extends AppCompatActivity implements TabLayout.O
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.activity_itemdetail, menu);
-        return super.onCreateOptionsMenu(menu);
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
     @Override
     public void setTitle(CharSequence title) {

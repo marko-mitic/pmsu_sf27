@@ -4,6 +4,7 @@ package com.example.mitke.pmsu_sf27.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 import java.util.Date;
 import java.util.List;
@@ -39,5 +40,12 @@ public class Tag extends Model {
         return super.toString()+"Tag{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+    public static Tag getByName(String name){
+        return new Select().from(Tag.class).where("Name = ?",name).executeSingle();
+    }
+
+    public static List<Tag> getall() {
+        return new Select().all().from(Tag.class).execute();
     }
 }

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="16dp" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="1">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/meal_name"
-        android:text="Name"
+        android:text="@string/name_test_value"
         android:layout_margin="16dp"
-        android:textSize="@dimen/rest_item_text_size_large"
+        android:textSize="@dimen/rest_item_text_size_small"
         android:textColor="@color/black"/>
-
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/meal_price"
         android:layout_margin="16dp"
-        android:text="Price"
-        android:textSize="@dimen/rest_item_text_size_large"
+        android:text="@string/price"
+        android:textSize="@dimen/rest_item_text_size_small"
         android:textAlignment="textEnd"
         android:textColor="@color/black"/>
 
