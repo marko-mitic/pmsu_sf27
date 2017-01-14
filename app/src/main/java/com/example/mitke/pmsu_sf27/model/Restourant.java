@@ -7,10 +7,12 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.example.mitke.pmsu_sf27.tools.Util;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -257,7 +259,35 @@ public class Restourant extends Model {
         return getAllRestourants().get(id);
     }
 
-
+    public static ArrayList<Restourant> filterByDistance(ArrayList<Restourant> toFilter, double latitude, double longitude, double distance){
+        Iterator<Restourant> it = toFilter.iterator();
+        while (it.hasNext()){
+            Restourant r = it.next();
+            if(Util.haversineDistance(latitude,longitude,r.getLocationLat(),r.getLocationLong())>distance){
+                it.remove();
+            }
+        }
+        return toFilter;
+    }
+    public static ArrayList<Restourant> filterByWorkTime(int hour, int min){
+        ArrayList<Restourant> toFilter = (ArrayList<Restourant>) Restourant.getAllRestourants();
+        Iterator<Restourant> it = toFilter.iterator();
+        while(it.hasNext()){
+            Restourant r = it.next();
+            if(r.getStartHour()>hour||r.getEndHour()<hour){
+                it.remove();
+            }else if(r.getStartHour()==hour){
+                if (r.getStartMinute()>min){
+                    it.remove();
+                }
+            }else if(r.getEndHour()==hour){
+                if (r.getEndMinute()<min){
+                    it.remove();
+                }
+            }
+        }
+        return toFilter;
+    }
     public String getWorkTimeString() {
         String result;
         String startHour;

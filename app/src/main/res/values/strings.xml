@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Restoran SF 27/14</string>
+    <string name="app_name">Food finder</string>
     <string name="title_activity_restourants">RESTOURANTS</string>
     <string name="title_activity_main">FOOD FINDER</string>
     <string name="settings">Settings</string>
@@ -129,4 +129,7 @@
     <string name="name_test_value">Name</string>
     <string name="price">Price</string>
     <string name="ok">Ok</string>
+    <string name="filter_time_text">PICK TIME</string>
+    <string name="home">Home</string>
+    <string name="home_long">Home screen</string>
 </resources>

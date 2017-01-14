@@ -2,15 +2,15 @@
 <resources>
     <string-array name="pref_radiusConnectionTypes_entries">
         <item>1 km</item>
-        <item>3 km</item>
         <item>5 km</item>
         <item>10 km</item>
+        <item>50 km</item>
     </string-array>
 
     <string-array name="pref_radiusConnectionTypes_values">
         <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>5</item>
         <item>10</item>
+        <item>50</item>
     </string-array>
 </resources>

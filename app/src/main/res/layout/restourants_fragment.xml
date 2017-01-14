@@ -3,6 +3,26 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_time_text"
+            android:id="@+id/filter_time_btn"
+            android:layout_gravity="start"
+            android:layout_margin="16dp"
+            android:background="@color/colorAccent" />
+        <TextView
+            android:id="@+id/time_filter_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            />
+    </LinearLayout>
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

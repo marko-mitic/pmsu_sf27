@@ -30,20 +30,17 @@ public class RestourantDetailsFragment extends Fragment {
 
     public RestourantDetailsFragment(){
         super();
-        Log.d("FRAGMENT_INST","FRAGMENT INST");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("FRAGMENT_ONSCREATE","FRAGMENT REST_DETAILS ON CREATE");
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        Log.d("FRAGMENT_ONSCREATEVIEW","FRAGMENT REST_DETAILS ON CREATE VIEW");
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {

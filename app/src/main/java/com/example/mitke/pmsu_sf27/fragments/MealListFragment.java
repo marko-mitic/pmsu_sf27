@@ -66,7 +66,6 @@ public class MealListFragment extends ListFragment implements AdapterView.OnItem
             }
         });
 
-
         return view;
     }
     public void showFilterList(View anchor){

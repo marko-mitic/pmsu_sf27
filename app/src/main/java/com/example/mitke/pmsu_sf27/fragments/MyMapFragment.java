@@ -60,7 +60,7 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMarkerClickLi
                 LatLng place = new LatLng(1,1);
                 for(Restourant r: mRestourantList){
                     place = new LatLng(r.getLocationLat(), r.getLocationLong());
-                    googleMap.addMarker(new MarkerOptions().position(place).title(r.getName()));
+                    googleMap.addMarker(new MarkerOptions().position(place).title(r.getName())).showInfoWindow();
                 }
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place, 12.0f));
                 googleMap.setOnMarkerClickListener(MyMapFragment.this);

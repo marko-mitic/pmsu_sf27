@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
@@ -35,6 +36,7 @@ import org.w3c.dom.Text;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static com.example.mitke.pmsu_sf27.R.id.action_settings;
 import static com.example.mitke.pmsu_sf27.R.id.rest_tab_layout;
 
 public class MealActivity extends AppCompatActivity {
@@ -155,17 +157,32 @@ public class MealActivity extends AppCompatActivity {
 
         if(position == 0){
             //..
-            Intent intent = new Intent(MealActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MealActivity.this, MainActivity.class);
             startActivity(intent);
         }else if(position == 1){
             //..
+            Intent intent = new Intent(MealActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }else if (position == 2){
             this.finishAffinity();
         }
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
+        this.mNavItems.add(new NavItem(getString(R.string.home), getString(R.string.home_long), R.drawable.ic_home_black_24px ));
+
         this.mNavItems.add(new NavItem(getString(R.string.settings), getString(R.string.settings_long), R.drawable.ic_build_black_24dp ));
         this.mNavItems.add(new NavItem(getString(R.string.exit), getString(R.string.exit_long), R.drawable.ic_settings_power_black_24dp ));
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case action_settings:
+                Intent sIntent = new Intent(this, SettingsActivity.class);
+                startActivity(sIntent);
+                return true;
+        }
+        return false;
     }
 }

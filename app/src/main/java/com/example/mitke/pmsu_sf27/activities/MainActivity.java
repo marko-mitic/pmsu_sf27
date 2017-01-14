@@ -28,6 +28,8 @@ import com.example.mitke.pmsu_sf27.adapters.DrawerListAdapter;
 import com.example.mitke.pmsu_sf27.model.NavItem;
 import com.example.mitke.pmsu_sf27.pagers.MainPager;
 import com.example.mitke.pmsu_sf27.tools.FragmentTransition;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -136,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void prepareMenu(ArrayList<NavItem> mNavItems) {
+        this.mNavItems.add(new NavItem(getString(R.string.home), getString(R.string.home_long), R.drawable.ic_home_black_24px ));
+
         this.mNavItems.add(new NavItem(getString(R.string.settings), getString(R.string.settings_long), R.drawable.ic_build_black_24dp ));
         this.mNavItems.add(new NavItem(getString(R.string.exit), getString(R.string.exit_long), R.drawable.ic_settings_power_black_24dp ));
 
@@ -153,10 +157,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         if(position == 0){
             //..
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
             startActivity(intent);
         }else if(position == 1){
             //..
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }else if (position == 2){
             this.finishAffinity();
         }
         mDrawerLayout.closeDrawer(mDrawerPane);

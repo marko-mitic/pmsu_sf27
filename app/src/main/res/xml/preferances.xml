@@ -41,7 +41,7 @@
         <ListPreference
             android:dialogTitle="@string/update_lookup_radius"
             android:entries="@array/pref_radiusConnectionTypes_entries"
-            android:entryValues="@array/list_preference_entry_values"
+            android:entryValues="@array/pref_radiusConnectionTypes_values"
             android:key="@string/pref_radius"
             android:title="@string/update_lookup_radius"
             android:summary="%s"
