@@ -132,4 +132,5 @@
     <string name="filter_time_text">PICK TIME</string>
     <string name="home">Home</string>
     <string name="home_long">Home screen</string>
+    <string name="filter_location">FILTER LOCATION</string>
 </resources>
